@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Max Longton – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Max Longton – web apps, tools, and experiments.">
+  <style>
+    :root {
+      --bg: #060709;
+      --bg-elevated: #101218;
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.08);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      padding: 32px 20px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .headline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .name {
+      font-size: clamp(2.4rem, 3vw + 1.4rem, 3.4rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .name span:last-child {
+      font-size: 0.55em;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+    }
+
+    .tagline {
+      font-size: 0.98rem;
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      background: rgba(15, 23, 42, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.86rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .link-chip {
+      border-radius: 999px;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.14s ease, border-color 0.14s ease,
+        transform 0.12s ease;
+    }
+
+    .link-chip:hover {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    .projects-section {
+      background: rgba(6, 7, 9, 0.8);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 18px 22px;
+      backdrop-filter: blur(20px);
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 0 4px;
+    }
+
+    .projects-header h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .projects-header span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 720px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .project {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #111827 0, #020617 60%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .project-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #1f2937 0, #020617 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.96;
+    }
+
+    .project:hover .project-media img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    .project-body {
+      padding: 14px 14px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .project h3 {
+      font-size: 0.98rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .project-url {
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 50%;
+      text-align: right;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .project-footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+    }
+
+    .project-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, transform 0.12s ease,
+        border-color 0.12s ease;
+    }
+
+    .project-link:hover {
+      background: rgba(45, 212, 191, 0.18);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      opacity: 0.85;
+    }
+
+    @media (min-width: 880px) {
+      body {
+        padding-top: 52px;
+      }
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .headline {
+        max-width: 60%;
+      }
+      .projects-section {
+        padding: 26px 22px 24px;
+      }
+      .project-body {
+        padding: 15px 15px 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="headline">
+        <div class="name">
+          <span>MAX&nbsp;LONGTON</span>
+          <span>Full-stack engineer & builder</span>
+        </div>
+        <p class="tagline">
+          I design and ship web apps, tools, and experiments — from online tuners
+          and learning tools to D&D adventures and WoW Classic utilities.
+        </p>
+        <div class="meta">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>Building things on the web</span>
+          </div>
+          <div class="pill">Angular · React · Node · Postgres · MongoDB</div>
+        </div>
+      </div>
+      <div>
+        <div class="links">
+          <a class="link-chip" href="https://github.com/elongton" target="_blank" rel="noreferrer">
+            <span>GitHub</span> <span>↗</span>
+          </a>
+          <a class="link-chip" href="mailto:max@longtoniplaw.com">
+            <span>Email</span> <span>✉</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="projects-section" aria-label="Projects">
+      <div class="projects-header">
+        <h2>Selected Projects</h2>
+        <span>Live, production sites I’ve designed & built</span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Longton IP Law -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="longton_ip_law.png"
+              alt="Screenshot of Longton IP Law website"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Longton IP Law</h3>
+              <a class="project-url" href="https://longtoniplaw.com" target="_blank" rel="noreferrer">
+                longtoniplaw.com
+              </a>
+            </div>
+            <p class="project-desc">
+              Firm website for a boutique intellectual-property law practice,
+              including services, background, and articles for inventors and
+              businesses.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">WordPress</span>
+                <span class="tag">Branding</span>
+                <span class="tag">Content</span>
+              </div>
+              <a class="project-link" href="https://longtoniplaw.com" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tune Anything -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="tune_anything.png"
+              alt="Screenshot of Tune Anything online violin tuner"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Tune Anything – Violin Tuner</h3>
+              <a class="project-url" href="https://tuneanything.com/online-violin-tuner" target="_blank" rel="noreferrer">
+                tuneanything.com
+              </a>
+            </div>
+            <p class="project-desc">
+              Web-audio based tuner with a guided flow for violinists — from
+              first-time students to players who just need a quick reference
+              pitch.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Web Audio API</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">SEO</span>
+              </div>
+              <a class="project-link" href="https://tuneanything.com/online-violin-tuner" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Off Rails Adventures -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="off_rails.png"
+              alt="Screenshot of Off Rails Adventures D&D campaign site"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Off Rails Adventures</h3>
+              <a class="project-url" href="https://offrailsadventures.com" target="_blank" rel="noreferrer">
+                offrailsadventures.com
+              </a>
+            </div>
+            <p class="project-desc">
+              Story-driven D&amp;D 5e campaigns written for new GMs, with a
+              storefront, adventure pages, and supporting content for running
+              sessions with minimal prep.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Next.js / React</span>
+                <span class="tag">E-commerce</span>
+                <span class="tag">D&amp;D 5e</span>
+              </div>
+              <a class="project-link" href="https://offrailsadventures.com" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Savvy Engineer -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="savvy_engineer.png"
+              alt="Screenshot of Savvy Engineer platform"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Savvy Engineer</h3>
+              <a class="project-url" href="https://savvy.engineer" target="_blank" rel="noreferrer">
+                savvy.engineer
+              </a>
+            </div>
+            <p class="project-desc">
+              Companion site for my FE Exam guide, evolving into a platform for
+              worked engineering problems, calculators, and exam-style practice.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Nuxt / Vue</span>
+                <span class="tag">Node / Postgres</span>
+                <span class="tag">Auth</span>
+              </div>
+              <a class="project-link" href="https://savvy.engineer" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Food Optimization -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="food.png"
+              alt="Screenshot of food optimization app"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Food Optimization</h3>
+              <a class="project-url" href="https://food.maxlongton.com" target="_blank" rel="noreferrer">
+                food.maxlongton.com
+              </a>
+            </div>
+            <p class="project-desc">
+              An experiment in optimizing nutrition, cost, and cook time:
+              recipe scheduling, batch cooking, and weekly planning tools to
+              make “future you” grateful.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Web App</span>
+                <span class="tag">Data-driven UX</span>
+              </div>
+              <a class="project-link" href="https://food.maxlongton.com" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Memory App -->
+        <article class="project">
+          <div class="project-media">
+            <img
+              src="memory-app.png"
+              alt="Screenshot of memory optimization / spaced repetition app"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Memory</h3>
+              <a class="project-url" href="https://memory.maxlongton.com" target="_blank" rel="noreferrer">
+                memory.maxlongton.com
+              </a>
+            </div>
+            <p class="project-desc">
+              A spaced-repetition tool built around the SM-2 algorithm,
+              designed to help users build durable memories for whatever
+              they’re studying.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Spaced repetition</span>
+                <span class="tag">Algorithmic review</span>
+              </div>
+              <a class="project-link" href="https://memory.maxlongton.com" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Crashout / Classic BiS Browser -->
+        <article class="project">
+          <div class="project-media">
+            <!-- TODO: add images/crashoutguild.png -->
+            <img
+              src="images/crashoutguild.png"
+              alt="Screenshot of Classic BiS Browser Crashout guild site"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3>Classic BiS Browser / Crashout</h3>
+              <a class="project-url" href="https://crashoutguild.site" target="_blank" rel="noreferrer">
+                crashoutguild.site
+              </a>
+            </div>
+            <p class="project-desc">
+              A WoW Classic gear browser and guild tool: tracks character gear,
+              compares it to BiS lists, and pulls performance data from external
+              APIs.
+            </p>
+            <div class="project-footer">
+              <div class="tags">
+                <span class="tag">Angular</span>
+                <span class="tag">Express / MongoDB</span>
+                <span class="tag">Blizzard &amp; WCL APIs</span>
+              </div>
+              <a class="project-link" href="https://crashoutguild.site" target="_blank" rel="noreferrer">
+                Visit site
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year">2025</span> · Max Longton</span>
+      <span>Built as a minimal, static page for GitHub Pages.</span>
+    </footer>
+  </main>
+
+  <script>
+    // Keep the year up to date without touching the HTML.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

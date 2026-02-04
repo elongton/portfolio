@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Max Longton – Software Engineer & Maker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Max Longton – full-stack engineer building tools for musicians, GMs, learners, and gamers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d16;
+      --card: #10121f;
+      --accent: #ffb64c;
+      --accent-soft: rgba(255, 182, 76, 0.16);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-xl: 1.75rem;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.65);
+      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.75);
+      --gap: 1.75rem;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #101827 0, #05060a 40%, #020308 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3.5rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 0.75rem 0 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 6, 10, 0.85),
+        rgba(5, 6, 10, 0.7),
+        transparent
+      );
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.8);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .logo-text strong {
+      font-size: 0.84rem;
+      color: var(--text);
+      letter-spacing: 0.18em;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.85);
+      transform: translateY(-1px);
+    }
+
+    .pill-primary {
+      border-color: rgba(248, 250, 252, 0.06);
+      background: radial-gradient(circle at top left, var(--accent) 0, #f97316 40%, #7c2d12 100%);
+      color: #111827;
+      font-weight: 600;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.85);
+    }
+
+    .pill-primary:hover {
+      color: #020617;
+      transform: translateY(-1px) translateZ(0);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      align-items: center;
+      gap: 2.5rem;
+      padding: 1.75rem 0 2.5rem;
+    }
+
+    .hero-copy-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.12rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: linear-gradient(to right, rgba(15,23,42,0.9), rgba(15,23,42,0.6));
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-copy-eyebrow span.badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, #22c55e 0, #16a34a 45%, #166534 100%);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      margin: 0 0 1rem;
+    }
+
+    .hero h1 span.accent {
+      background: linear-gradient(120deg, #facc15, #f97316, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lede {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.4rem 0 1.6rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .chip {
+      padding: 0.2rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.9), rgba(15,23,42,0.6));
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(248, 250, 252, 0.16);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-style: dashed;
+      border-color: rgba(148, 163, 184, 0.45);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-secondary {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-secondary strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-secondary .divider {
+      width: 1px;
+      height: 20px;
+      background: radial-gradient(circle at center, rgba(148,163,184,0.8), transparent);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo-card {
+      position: relative;
+      width: min(320px, 80vw);
+      padding: 0.55rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.1), rgba(15, 23, 42, 1));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-photo-card-inner {
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-photo-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -10%;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      opacity: 0.75;
+    }
+
+    .hero-orbit-badge {
+      position: absolute;
+      right: -0.1rem;
+      bottom: 2.75rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(248, 250, 252, 0.1);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-orbit-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, var(--accent), #f97316);
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    main {
+      margin-top: 0.75rem;
+    }
+
+    .section {
+      padding: 2.25rem 0 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.25rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 28rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+
+    .project-card {
+      position: relative;
+      padding: 1.3rem 1.2rem 1.35rem;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.05), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-chip-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .project-tag {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .project-chip-row span.role {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .project-highlights {
+      margin: 0;
+      padding-left: 1.05rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .project-highlights li + li {
+      margin-top: 0.15rem;
+    }
+
+    .project-footer {
+      margin-top: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      color: var(--muted);
+    }
+
+    .pill-tech {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .project-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .project-link svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2rem;
+      padding: 1.5rem 1.25rem;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-layout h3 {
+      margin-top: 0;
+      font-size: 1.05rem;
+    }
+
+    .about-layout p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .about-item-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .contact a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact-social {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-photo-wrap {
+        order: -1;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .page {
+        padding-inline: 1rem;
+      }
+
+      .about-layout {
+        padding: 1.25rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="#top" class="logo-mark">
+        <div class="logo-avatar">
+          <img src="max_portrait_enhanced.png" alt="Portrait of Max Longton" />
+        </div>
+        <div class="logo-text">
+          <span>Max Longton</span>
+          <strong>Engineer</strong>
+        </div>
+      </a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/elongton" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="#contact" class="pill-primary">Get in touch</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="hero-copy-eyebrow">
+            <span class="badge-dot"></span>
+            <span>Building helpful systems, one niche at a time</span>
+          </div>
+          <h1>
+            Software engineer designing tools for
+            <span class="accent">musicians, GMs, learners, and gamers.</span>
+          </h1>
+          <p class="hero-lede">
+            I design and build full-stack products end-to-end—everything from a high-traffic online violin tuner to D&amp;D adventures in Tokala, nutrition planners, memory trainers, and World of Warcraft Classic guild tools.
+          </p>
+          <div class="hero-meta">
+            <span class="chip">Full-stack: Angular · React · Node · Postgres</span>
+            <span class="chip">Control systems &amp; engineering background</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn pill-primary" href="#projects">Browse featured projects</a>
+            <a class="btn btn-ghost" href="https://github.com/elongton" target="_blank" rel="noreferrer">View code on GitHub</a>
+          </div>
+          <div class="hero-secondary">
+            <span><strong>7</strong> production projects</span>
+            <span class="divider"></span>
+            <span>Focused on real-world problems: tuning, studying, planning, storytelling, and raid prep.</span>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-card">
+            <div class="hero-photo-card-inner">
+              <img src="images/max-portrait.jpg" alt="Portrait of Max Longton" />
+            </div>
+            <div class="hero-orbit"></div>
+            <div class="hero-orbit-badge">
+              <span class="dot"></span>
+              Shipping side projects since 2010
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Featured work</div>
+            <div class="section-title">Selected products I’ve designed &amp; built</div>
+          </div>
+          <p class="section-subtitle">
+            Each project started with a specific pain point—from “my violin is always out of tune”
+            to “planning weekly food is exhausting” to “what’s my Classic BiS?”—and turned into
+            a focused tool with real users.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Longton IP Law -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Client site</span>
+              <span class="role">Design · Frontend · WordPress</span>
+            </div>
+            <h3 class="project-title">Longton IP Law</h3>
+            <p class="project-meta">Boutique IP law firm site for a Washington D.C. patent attorney.</p>
+            <ul class="project-highlights">
+              <li>Clarifies IP services, fee structure, and “difference” in a clean, skimmable layout.</li>
+              <li>Highlights long-form articles and pro-bono case studies without feeling like a wall of text.</li>
+              <li>Built for readability and trust on desktop and mobile with accessible typography.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">PHP / WordPress</span>
+                <span class="pill-tech">Custom theme</span>
+                <span class="pill-tech">SEO</span>
+              </div>
+              <a href="https://longtoniplaw.com" target="_blank" rel="noreferrer" class="project-link">
+                Visit site
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Tune Anything -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Product</span>
+              <span class="role">UX · Frontend · Audio</span>
+            </div>
+            <h3 class="project-title">Tune Anything – Online Violin Tuner</h3>
+            <p class="project-meta">A web-based tuner that musicians actually understand and return to.</p>
+            <ul class="project-highlights">
+              <li>One-screen tuner with persistent settings so returning players can start tuning instantly.</li>
+              <li>Step-by-step visual tutorial that walks beginners through pegs, fine tuners, and bow use.</li>
+              <li>Optimized for search and mobile so students can tune directly from their phones before practice.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">JavaScript AudioContext</span>
+                <span class="pill-tech">Static hosting</span>
+                <span class="pill-tech">SEO</span>
+              </div>
+              <a href="https://tuneanything.com/online-violin-tuner" target="_blank" rel="noreferrer" class="project-link">
+                Visit tuner
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Off Rails Adventures -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Product</span>
+              <span class="role">Brand · UX · E-commerce</span>
+            </div>
+            <h3 class="project-title">Off Rails Adventures</h3>
+            <p class="project-meta">A campaign shop helping new GMs run Fifth Edition games in the world of Tokala.</p>
+            <ul class="project-highlights">
+              <li>Adventure catalogue with level tags, prices, and art-forward cards built for quick scanning.</li>
+              <li>Landing page copy speaks directly to nervous first-time GMs and explains how Off Rails reduces prep.</li>
+              <li>Checkout flow tuned for digital downloads with art credits and community testimonials.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">Next.js / React</span>
+                <span class="pill-tech">Stripe / E-commerce</span>
+              </div>
+              <a href="https://offrailsadventures.com" target="_blank" rel="noreferrer" class="project-link">
+                Visit site
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Savvy Engineer -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Product</span>
+              <span class="role">Platform · Auth · Content</span>
+            </div>
+            <h3 class="project-title">Savvy Engineer</h3>
+            <p class="project-meta">A companion platform for FE exam prep and engineering Q&amp;A.</p>
+            <ul class="project-highlights">
+              <li>Integrated with your FE Math Guide on Amazon and structured by FE exam subjects.</li>
+              <li>Account system with email &amp; Google login for purchasing or unlocking detailed solutions.</li>
+              <li>Content model designed to grow beyond FE into broader engineering problem-solving.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">Nuxt / Vue or Next (tbd)</span>
+                <span class="pill-tech">Node / Postgres</span>
+                <span class="pill-tech">Auth</span>
+              </div>
+              <a href="https://savvy.engineer" target="_blank" rel="noreferrer" class="project-link">
+                Visit site
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Food Optimization -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Experiment</span>
+              <span class="role">UX · Data modeling</span>
+            </div>
+            <h3 class="project-title">Food Optimization</h3>
+            <p class="project-meta">A planner that minimizes weekly cook time while keeping meals varied and healthy.</p>
+            <ul class="project-highlights">
+              <li>Focuses on batching prep and cooking sessions to reduce repeated overhead.</li>
+              <li>Models recipes, shopping lists, and repeat frequency so you don’t burn out on the same meal every day.</li>
+              <li>Built around personal research into cost, time, and nutrition trade-offs.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">TypeScript</span>
+                <span class="pill-tech">API-driven UI</span>
+              </div>
+              <a href="https://food.maxlongton.com" target="_blank" rel="noreferrer" class="project-link">
+                Visit app
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Memory Optimization -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Experiment</span>
+              <span class="role">Spaced repetition · Algorithms</span>
+            </div>
+            <h3 class="project-title">Memory Optimization</h3>
+            <p class="project-meta">A minimalist spaced-repetition trainer focused on long-term retention.</p>
+            <ul class="project-highlights">
+              <li>Implements an SM-2 style scheduling algorithm to decide when a card comes back.</li>
+              <li>Simple “Memories / Review / List / Stats” navigation for quick daily review loops.</li>
+              <li>Built to explore how algorithmic tweaks affect real-world recall, not just scores.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">JavaScript</span>
+                <span class="pill-tech">SM-2 algorithm</span>
+              </div>
+              <a href="https://memory.maxlongton.com" target="_blank" rel="noreferrer" class="project-link">
+                Visit app
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Crashout Guild / BiS Browser -->
+          <article class="project-card">
+            <div class="project-chip-row">
+              <span class="project-tag">Guild tool</span>
+              <span class="role">Full-stack · Game data</span>
+            </div>
+            <h3 class="project-title">Crashout Classic BiS Browser</h3>
+            <p class="project-meta">A gear browser for WoW Classic players in the Crashout community.</p>
+            <ul class="project-highlights">
+              <li>Filters by class and spec with per-player views to compare current gear versus BiS lists.</li>
+              <li>Backed by scheduled services that ingest character gear and raid performance from external APIs.</li>
+              <li>Designed to help raid leaders and players quickly spot upgrades and missing pieces.</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="pill-tech">Angular</span>
+                <span class="pill-tech">Node / Express</span>
+                <span class="pill-tech">MongoDB</span>
+              </div>
+              <a href="https://crashoutguild.site" target="_blank" rel="noreferrer" class="project-link">
+                Visit app
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">About</div>
+            <div class="section-title">Engineer with a bias toward shipped experiments</div>
+          </div>
+        </div>
+        <div class="about-layout">
+          <div>
+            <h3>Hi, I’m Max.</h3>
+            <p>
+              I’m a full-stack engineer with a background in control systems who likes
+              building “small but sharp” tools: things that make tuning an instrument,
+              running your first D&amp;D campaign, planning weekly meals, or prepping a raid
+              noticeably easier.
+            </p>
+            <p>
+              My professional work is in Angular, React, Node, and scalable system
+              design. On the side, I use the same skills to ship focused products that
+              test real value hypotheses in the wild.
+            </p>
+          </div>
+          <div class="about-grid">
+            <div>
+              <div class="about-item-title">Core stack</div>
+              <p>Angular · React · TypeScript · Node / Express · Postgres · MongoDB · Docker.</p>
+            </div>
+            <div>
+              <div class="about-item-title">Focus areas</div>
+              <p>Control systems, developer experience, process automation, and “niche but real” user problems.</p>
+            </div>
+            <div>
+              <div class="about-item-title">What I enjoy</div>
+              <p>Turning fuzzy ideas into concrete MVPs, measuring real traffic &amp; behavior, and iterating quickly.</p>
+            </div>
+            <div>
+              <div class="about-item-title">Elsewhere</div>
+              <p>GitHub, WoW Classic raids, and occasionally writing about engineering and learning systems.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div>
+          <strong>Let’s talk.</strong><br />
+          I’m always open to chatting about control-aware tools, educational products,
+          and game-adjacent systems.
+        </div>
+        <div class="contact-social">
+          <span>Email: <a href="mailto:max@longtoniplaw.com">max@longtoniplaw.com</a></span>
+          <span>GitHub: <a href="https://github.com/elongton" target="_blank" rel="noreferrer">@elongton</a></span>
+          <!-- Add LinkedIn or other links here -->
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Max Longton – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050408;
+      --bg-muted: #0c0b10;
+      --card-bg: #101018;
+      --hero-orange: #ff5c2a;
+      --hero-orange-deep: #d62828;
+      --text: #f9fafb;
+      --text-dark: #111827;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.28);
+      --radius-hero: 32px;
+      --shadow-hero: 0 40px 80px rgba(0, 0, 0, 0.7);
+      --shadow-card: 0 24px 60px rgba(15, 23, 42, 0.65);
+      --accent: #ffb347;
+      --gap: 1.75rem;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #10121b 0, #050408 40%, #030108 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* --- HERO FRAME (Dribbble-style) --- */
+
+    .hero-shell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 0 2.5rem;
+    }
+
+    .hero-frame {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      border-radius: var(--radius-hero);
+      background: radial-gradient(circle at top center, #20212f 0, #050408 60%, #020105 100%);
+      padding: 12px;
+      box-shadow: var(--shadow-hero);
+    }
+
+    .hero-inner {
+      position: relative;
+      border-radius: calc(var(--radius-hero) - 10px);
+      overflow: hidden;
+      background: linear-gradient(125deg, var(--hero-orange) 0%, var(--hero-orange-deep) 42%, #861f41 100%);
+      min-height: clamp(380px, 60vh, 520px);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .hero-nav {
+      position: absolute;
+      inset: 18px 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #ffe9dc;
+      z-index: 3;
+    }
+
+    .hero-nav-center {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-nav-center span {
+      margin-top: 0.3rem;
+    }
+
+    .hero-nav-bar {
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 243, 230, 0.8);
+    }
+
+    .hero-panel {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(3rem, 5vw, 4rem);
+    }
+
+    .hero-max-text {
+      position: absolute;
+      inset: auto 6% 10% 6%;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: clamp(4.5rem, 11vw, 7rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 244, 235, 0.26);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-portrait-wrap {
+      position: relative;
+      max-width: 420px;
+      width: min(60%, 420px);
+      z-index: 2;
+      filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.85));
+    }
+
+    .hero-portrait {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 999px;
+      transform: translateY(12px);
+    }
+
+    .hero-tagline {
+      position: absolute;
+      left: 7%;
+      bottom: 14%;
+      max-width: 260px;
+      color: #ffe9dd;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      z-index: 3;
+    }
+
+    .hero-tagline small {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.8;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-tagline strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* --- CONTENT SECTION (editorial look) --- */
+
+    .content-panel {
+      margin-top: 2.8rem;
+      border-radius: 24px;
+      background: #f5f5f4;
+      color: #111827;
+      box-shadow: var(--shadow-card);
+      padding: 2.5rem 2.25rem 2.75rem;
+    }
+
+    @media (max-width: 720px) {
+      .content-panel {
+        padding: 2rem 1.5rem 2.25rem;
+      }
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Playfair Display", "Times New Roman", serif;
+    }
+
+    .about-title {
+      font-size: 2.2rem;
+      margin: 0.4rem 0 0.6rem;
+    }
+
+    .about-body {
+      font-size: 0.98rem;
+      color: #4b5563;
+      line-height: 1.7;
+      max-width: 34rem;
+    }
+
+    .about-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+    }
+
+    .about-meta {
+      font-size: 0.86rem;
+      color: #6b7280;
+    }
+
+    .about-meta strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #111827;
+    }
+
+    .section-heading {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-copy {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 0.15);
+      font-size: 0.78rem;
+      color: #4b5563;
+      margin: 0.15rem 0.25rem 0.25rem 0;
+    }
+
+    .pill span {
+      font-weight: 500;
+      margin-right: 0.25rem;
+      color: #111827;
+    }
+
+    /* --- PROJECT LIST --- */
+
+    .projects-block {
+      margin-top: 2.25rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.08);
+      padding-top: 2rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem 2rem;
+    }
+
+    @media (max-width: 800px) {
+      .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project-item {
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.06);
+    }
+
+    .project-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-name {
+      font-weight: 600;
+      font-size: 1.02rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: #6b7280;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.82rem;
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .project-link svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .tech-row {
+      margin-top: 0.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .tech-pill {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    /* --- FOOTER / CONTACT --- */
+
+    .footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.75rem 1.25rem 0.75rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    @media (max-width: 720px) {
+      .hero-frame { padding: 8px; }
+      .hero-nav { inset: 14px 18px auto; }
+      .hero-tagline {
+        left: 8%;
+        bottom: 10%;
+        max-width: 220px;
+      }
+      .hero-max-text {
+        inset: auto 6% 7% 6%;
+        font-size: clamp(3.4rem, 12vw, 5rem);
+      }
+      .hero-portrait-wrap {
+        width: 72%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HERO FRAME -->
+    <section class="hero-shell" id="top">
+      <div class="hero-frame">
+        <div class="hero-inner">
+          <div class="hero-nav">
+            <span>MAX LONGTON</span>
+            <span>CONTACT</span>
+          </div>
+          <div class="hero-nav-center">
+            <div class="hero-nav-bar"></div>
+            <span>MENU</span>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-max-text">MAX&nbsp;LONGTON</div>
+
+            <div class="hero-portrait-wrap">
+              <img src="max_portrait_enhanced.png" alt="Portrait of Max Longton" class="hero-portrait" />
+            </div>
+
+            <div class="hero-tagline">
+              <small>Software Engineer · Product Builder</small>
+              <strong>Helpful systems for musicians, GMs, learners &amp; gamers.</strong>
+              I design and ship focused tools from scratch—tuning instruments, planning
+              food, training memory, and helping WoW guilds make smarter loot calls.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL CONTENT PANEL -->
+    <section class="content-panel" id="about">
+      <div class="content-grid">
+        <!-- Left column: About -->
+        <div>
+          <div class="eyebrow">About me</div>
+          <h1 class="about-title">Engineer with a bias toward shipped experiments.</h1>
+          <p class="about-body">
+            I’m a full-stack engineer with a control-systems background who enjoys
+            taking messy, niche problems and turning them into small, sharp products.
+            From an online violin tuner with real traffic to tools for memory training,
+            WoW Classic raid prep, and D&amp;D adventures, I like building things that
+            people actually use.
+          </p>
+
+          <div class="about-meta-row">
+            <div class="about-meta">
+              <strong>7+</strong>
+              Public products &amp; experiments
+            </div>
+            <div class="about-meta">
+              <strong>Full-stack</strong>
+              Angular · React · Node · Postgres · Mongo
+            </div>
+            <div class="about-meta">
+              <strong>Focus</strong>
+              Usability, minimal surfaces, measurable value
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: Skills / tags -->
+        <div>
+          <div class="section-heading">What I build with</div>
+          <p class="section-copy">
+            My day job is architecting React and Angular applications at scale.
+            On the side, I apply the same discipline to small products that solve
+            real problems and can be validated quickly.
+          </p>
+
+          <div>
+            <div class="pill"><span>Frontend</span>Angular · React · TypeScript</div>
+            <div class="pill"><span>Backend</span>Node / Express · REST · Postgres · MongoDB</div>
+            <div class="pill"><span>Infra</span>Docker · Linux · Nginx · CI/CD</div>
+            <div class="pill"><span>Domains</span>Control systems, education, games, productivity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="projects-block" id="projects">
+        <div class="section-heading">Selected work</div>
+        <p class="section-copy">
+          A few of the sites and apps I’ve designed and built end-to-end, either for
+          clients or as my own products and experiments.
+        </p>
+
+        <div class="project-grid">
+          <!-- Longton IP Law -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Client · Web</span>
+              <span>ONGOING</span>
+            </div>
+            <div class="project-name">Longton IP Law</div>
+            <div class="project-desc">
+              Boutique IP law firm site for a Washington D.C. patent attorney, focused on
+              clarity, trust, and readable long-form content.
+            </div>
+            <div class="project-meta">
+              I handled information architecture, design, custom WordPress theme, and deployment.
+            </div>
+            <a class="project-link" href="https://longtoniplaw.com" target="_blank" rel="noreferrer">
+              Visit website
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">WordPress</span>
+              <span class="tech-pill">Custom theme</span>
+              <span class="tech-pill">SEO</span>
+            </div>
+          </article>
+
+          <!-- Tune Anything -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Product · Web</span>
+              <span>LIVE</span>
+            </div>
+            <div class="project-name">Tune Anything – Online Violin Tuner</div>
+            <div class="project-desc">
+              High-traffic online tuner built around a single, focused page with an
+              AudioContext-powered tuner and a visual tutorial for beginners.
+            </div>
+            <div class="project-meta">
+              Designed for students tuning on phones before practice—fast load, persistent settings, and search-optimized content.
+            </div>
+            <a class="project-link" href="https://tuneanything.com/online-violin-tuner" target="_blank" rel="noreferrer">
+              Try the tuner
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Web Audio</span>
+              <span class="tech-pill">Static hosting</span>
+            </div>
+          </article>
+
+          <!-- Off Rails Adventures -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Product · Commerce</span>
+              <span>WITH PARTNER</span>
+            </div>
+            <div class="project-name">Off Rails Adventures</div>
+            <div class="project-desc">
+              A campaign shop for Fifth Edition adventures set in Tokala, aimed at helping new GMs run games with less prep.
+            </div>
+            <div class="project-meta">
+              Built the brand, layout, and digital download flow; co-created story content and visuals.
+            </div>
+            <a class="project-link" href="https://offrailsadventures.com" target="_blank" rel="noreferrer">
+              Visit Off Rails
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">Next.js / React</span>
+              <span class="tech-pill">Stripe (planned)</span>
+            </div>
+          </article>
+
+          <!-- Savvy Engineer -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Product · EdTech</span>
+              <span>IN PROGRESS</span>
+            </div>
+            <div class="project-name">Savvy Engineer</div>
+            <div class="project-desc">
+              Companion platform to my FE exam prep materials, organizing worked examples and Q&amp;A by exam topic.
+            </div>
+            <div class="project-meta">
+              Handles auth, content structure, and a roadmap toward broader engineering problem-solving beyond the FE.
+            </div>
+            <a class="project-link" href="https://savvy.engineer" target="_blank" rel="noreferrer">
+              Open Savvy Engineer
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">Nuxt / Vue or Next</span>
+              <span class="tech-pill">Node</span>
+              <span class="tech-pill">Postgres</span>
+            </div>
+          </article>
+
+          <!-- Food Optimization -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Lab · Productivity</span>
+              <span>EXPERIMENT</span>
+            </div>
+            <div class="project-name">Food Optimization</div>
+            <div class="project-desc">
+              Prototype planner that models recipes, batching, and shopping lists to minimize weekly cook time without eating the same thing every day.
+            </div>
+            <div class="project-meta">
+              Encodes your own research into cost, nutrition, and time trade-offs as constraints and preferences.
+            </div>
+            <a class="project-link" href="https://food.maxlongton.com" target="_blank" rel="noreferrer">
+              Try the planner
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">API-driven UI</span>
+            </div>
+          </article>
+
+          <!-- Memory Optimization -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Lab · EdTech</span>
+              <span>EXPERIMENT</span>
+            </div>
+            <div class="project-name">Memory Optimization</div>
+            <div class="project-desc">
+              Minimalist spaced-repetition web app testing how different algorithms affect long-term recall.
+            </div>
+            <div class="project-meta">
+              Uses an SM-2 style scheduler with a simple “Memories / Review / Stats” loop for daily review.
+            </div>
+            <a class="project-link" href="https://memory.maxlongton.com" target="_blank" rel="noreferrer">
+              Train memory
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">SM-2 algorithm</span>
+            </div>
+          </article>
+
+          <!-- Crashout Guild -->
+          <article class="project-item">
+            <div class="project-label-row">
+              <span>Guild tool · Web</span>
+              <span>LIVE</span>
+            </div>
+            <div class="project-name">Crashout Classic BiS Browser</div>
+            <div class="project-desc">
+              Web app for your WoW Classic guild that compares each player’s current gear to curated BiS lists.
+            </div>
+            <div class="project-meta">
+              Full-stack Angular / Express / Mongo stack with scheduled services pulling data from Blizzard and Warcraft Logs APIs.
+            </div>
+            <a class="project-link" href="https://crashoutguild.site" target="_blank" rel="noreferrer">
+              Open Crashout tools
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path fill="currentColor" d="M7.5 4H15a1 1 0 0 1 1 1v7.5a1 1 0 1 1-2 0V7.41l-7.3 7.3a1 1 0 0 1-1.4-1.42L12.59 6H7.5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+            <div class="tech-row">
+              <span class="tech-pill">Angular</span>
+              <span class="tech-pill">Node / Express</span>
+              <span class="tech-pill">MongoDB</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer" id="contact">
+    <div>
+      Available to chat about control-aware tools, educational products, and game-adjacent systems.
+    </div>
+    <div>
+      Email: <a href="mailto:max@longtoniplaw.com">max@longtoniplaw.com</a> ·
+      GitHub: <a href="https://github.com/elongton" target="_blank" rel="noreferrer">@elongton</a>
+    </div>
+  </footer>
+</body>
+</html>
