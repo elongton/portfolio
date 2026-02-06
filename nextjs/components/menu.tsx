@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export const Menu = () => {
   return (
-    <nav className="z-10 fixed p-4 container mx-auto flex justify-between">
+    <nav className="text-white">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3">
       <div>
         <ul className="flex gap-4 items-center">
           <li>
@@ -26,6 +27,7 @@ export const Menu = () => {
         <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">
           Resume
         </button>
+      </div>
       </div>
     </nav>
   );

@@ -1,6 +1,9 @@
-export default function Page () {
+import { Menu } from "@/components/Menu"
+
+export default function Page() {
   return (
     <>
+      <Menu />
       <div>Hello</div>
     </>
   );
