@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Menu } from "@/components/Menu";
+import Image from "next/image";
 
 /**
  * Full-width hero with responsive background positioning/zoom.
