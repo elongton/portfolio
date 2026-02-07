@@ -74,7 +74,7 @@ export const Modal = ({
         onClick={closeOnOverlayClick ? () => setIsOpen(false) : undefined}
       />
       <div className="relative mx-auto flex min-h-screen max-w-3xl items-center justify-center px-4 py-10">
-        <div className={`relative w-full rounded-md shadow-2xl ${panelClassName}`}>
+        <div className={`border relative w-full rounded-md shadow-2xl ${panelClassName}`}>
           <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
             <h3 className="text-lg font-semibold">{title ?? "Details"}</h3>
             <button

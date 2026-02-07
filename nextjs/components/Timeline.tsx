@@ -76,7 +76,10 @@ export const TimelineEntry = ({
         descriptionSide === "left" ? "md:ml-auto" : "md:mr-auto";
 
     const descriptionBlock = children ? (
-        <div className={`border p-4 w-full md:w-3/4 rounded-sm ${descriptionAlignment}`}>
+        <div
+            key="description"
+            className={`border p-4 w-full md:w-3/4 rounded-sm ${descriptionAlignment}`}
+        >
             {title && (
                 <h4 className="mb-2 text-base font-semibold">{title}</h4>
             )}
@@ -87,7 +90,10 @@ export const TimelineEntry = ({
     const imageAlignment = imageSide === "left" ? "md:ml-auto" : "md:mr-auto";
 
     const imageBlock = image ? (
-        <div className={`overflow-hidden border w-full md:w-3/4 ${imageAlignment}`}>
+        <div
+            key="image"
+            className={`overflow-hidden border w-full md:w-3/4 ${imageAlignment}`}
+        >
             {image}
         </div>
     ) : null;

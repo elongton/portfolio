@@ -32,7 +32,7 @@ export default function Page() {
               title="First Steps"
               descriptionSide="left"
               imageSide="right"
-              image={<img src="/timeline/garage.jpg" alt="Garage" className="h-full w-full object-cover" />}
+              image={<img src="/me_and_boat.png" alt="Garage" className="h-full w-full object-cover" />}
             >
               Built my first prototype in a garage and learned by shipping weekly.
             </TimelineEntry>
@@ -42,7 +42,7 @@ export default function Page() {
             <TimelineEntry
               descriptionSide="right"
               imageSide="left"
-              image={<img src="/timeline/studio.jpg" alt="Studio" className="h-full w-full object-cover" />}
+              image={<img src="/me_and_bike.png" alt="Studio" className="h-full w-full object-cover" />}
             >
               <div className="mb-3">
               Expanded into a studio and began collaborating on larger products.
