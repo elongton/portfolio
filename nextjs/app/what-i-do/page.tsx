@@ -1,8 +1,8 @@
-export default function Page(){
+import { Menu } from "@/components/Menu";
+
+export default function Page() {
     return (
-        <>
-            
-            <div>What I do page</div>
+        <>      <Menu />
         </>
     );
 }
