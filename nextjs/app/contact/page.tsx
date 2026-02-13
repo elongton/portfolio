@@ -3,10 +3,10 @@ import { Menu } from "@/components/Menu";
 export default function Page(){
     return <>
           <Menu />
-          <section className="container mx-auto w-full">
+          {/* <section className="container mx-auto w-full">
             <h2 className="text-lg">Let's talk!</h2>
-          </section>
-          <section className="container mx-auto w-full mt-10">
+          </section> */}
+          <section className="container mx-auto w-full mt-2">
             <h2 className="text-2xl">enrique.longton@gmail.com</h2>
           </section>
           <section className="container mx-auto w-full">

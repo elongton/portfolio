@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <>
       <Menu />
-      <section className="container mx-auto py-10">
+      <section className="container mx-auto mt-2 mb-10">
         <div className="mx-auto max-w-4xl overflow-hidden rounded-xl shadow-lg">
           <div className="aspect-video">
             <iframe
