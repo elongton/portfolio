@@ -3,6 +3,7 @@ import { Hero } from "./root-components/hero";
 import { essay } from "@/static/essay";
 import { WordcloudSatellite } from "@/components/Wordcloud_satellite";
 import { Carousel } from "./root-components/carousel";
+import { EasterEgg } from "@/components/EasterEgg";
 import { Slide1 } from "./root-components/slides/slide1";
 import { Slide2 } from "./root-components/slides/slide2";
 import { Slide3 } from "./root-components/slides/slide3";
@@ -26,6 +27,7 @@ export default function Home() {
   ];
   return (
     <>
+      <EasterEgg />
       <Hero />
       <section
         id="infoblocks"

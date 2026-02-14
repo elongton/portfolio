@@ -1,4 +1,4 @@
-import { Menu } from "@/components/Menu";
+import { Menu } from "@/components/menu";
 import Image from "next/image";
 
 /**
