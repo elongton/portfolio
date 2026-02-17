@@ -1,11 +1,15 @@
 "use client";
 
-import type { ReactElement, ReactNode } from "react";
+import type { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { cloneElement, isValidElement, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 
+type TriggerProps = {
+  onClick?: MouseEventHandler<HTMLElement>;
+};
+
 type ModalProps = {
-  trigger: ReactElement;
+  trigger: ReactElement<TriggerProps>;
   content: ReactNode;
   title?: string;
   className?: string;
@@ -16,9 +20,13 @@ type ModalProps = {
 };
 
 const mergeHandlers =
-  (first?: () => void, second?: () => void) => () => {
-    first?.();
-    second?.();
+  (
+    first?: MouseEventHandler<HTMLElement>,
+    second?: MouseEventHandler<HTMLElement>
+  ): MouseEventHandler<HTMLElement> =>
+  (event) => {
+    first?.(event);
+    second?.(event);
   };
 
 export const Modal = ({
