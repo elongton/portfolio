@@ -11,7 +11,7 @@ export default function Page() {
         priority
         quality={100}
         sizes="100vw"
-        className="pointer-events-none object-cover object-[60%_20%] scale-[1.02]"
+        className="pointer-events-none object-cover object-[60%_15%] scale-[1.02]"
       />
 
       <div className="fixed inset-x-0 top-0 z-30">
@@ -20,8 +20,8 @@ export default function Page() {
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-900/55 via-slate-900/35 to-slate-900/70" />
 
-      <div className="relative z-10 container mx-auto flex min-h-screen items-end px-6 pb-16 pt-24 sm:pt-28">
-        <div className="max-w-xl rounded-sm border border-white/20 bg-slate-900/40 p-6 backdrop-blur-sm">
+      <div className="relative z-10 container mx-auto flex min-h-screen items-center px-6 pb-16 pt-24 sm:pt-28">
+        <div className="max-w-xl p-6 mb-30">
           <h2 className="text-2xl sm:text-3xl">enrique.longton@gmail.com</h2>
           <div className="mt-3 flex gap-4">
             <a className="text-indigo-300 hover:text-indigo-200" href="">

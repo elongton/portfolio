@@ -20,7 +20,7 @@ export const Hero = () => {
         placeholder="blur"
         blurDataURL={HERO_BLUR_DATA_URL}
         sizes="100vw"
-        className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-[60%_32%] scale-100 sm:scale-[1.01] md:scale-[1.03]"
+        className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-[70%_32%] scale-100 sm:scale-[1.01] md:scale-[1.03]"
       />
 
       {/* Sticky nav over hero */}
@@ -86,9 +86,7 @@ export const Hero = () => {
         aria-label="Statement overlay"
       >
         <p className="max-w-md px-4 py-3 text-xl leading-relaxed text-white">
-          &quot;I build AI-native systems that turn messy work into reliable
-          software.&quot;
-        </p>
+          "I build AI-native systems that turn messy work into reliable software."</p>
       </div>
     </section>
   );

@@ -27,20 +27,20 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <section
+      {/* <section
         id="infoblocks"
         className="container mx-auto flex w-full grow gap-6 flex-col md:flex-row"
       >
         <Infoblock title="Designer" details={designerDetails} link="/designer" />
         <Infoblock title="Engineer" details={engineerDetails} link="/engineer" />
         <Infoblock title="Product Manager" details={productManagerDetails} link="/product-manager" />
-      </section>
-      <div className="container mx-auto">
+      </section> */}
+      {/* <div className="container mx-auto">
         <hr />
-      </div>
-      <section className="container mx-auto py-10">
-        <h2 className="text-2xl font-semibold mb-4 text-center ">A Short Introduction</h2>
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-xl shadow-lg">
+      </div> */}
+      <section className="container mx-auto py-10 mt-10">
+
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-xl shadow-lg">
           <div className="aspect-video">
             <iframe
               src="https://www.youtube.com/embed/NrpMjm4x9Vc"
@@ -52,24 +52,24 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="container mx-auto mb-10">
+      {/* <div className="container mx-auto mb-10">
         <hr />
-      </div>
-      <section className="container mx-auto">
+      </div> */}
+      {/* <section className="container mx-auto">
         <h2 className="text-2xl font-semibold mb-4 ">Core concepts in my orbit</h2>
         <WordcloudSatellite text={essay} links={{ "that": "/contact" }} />
       </section>
       <div className="container mx-auto mb-10">
         <hr />
-      </div>
-      <section className="container mx-auto">
+      </div> */}
+      <section className="container mx-auto mt-20">
         <h2 className="text-2xl font-semibold mb-4 ">Featured Work</h2>
         <Carousel slides={[<Slide1 key={1} />, <Slide2 key={2} />, <Slide3 key={3} />, <Slide4 key={4} />]} />
       </section>
-      <div className="container mx-auto mb-10 mt-10">
+      {/* <div className="container mx-auto mb-10 mt-10">
         <hr />
-      </div>
-      <section className="container mx-auto mb-10">
+      </div> */}
+      <section className="container mx-auto mb-20 mt-30">
         <h2 className="text-2xl font-semibold mb-4 text-center">Want to talk about building AI-native tools that <u>actually</u> hold up in the real world?</h2>
 
         <div className={'flex justify-center gap-10'}>

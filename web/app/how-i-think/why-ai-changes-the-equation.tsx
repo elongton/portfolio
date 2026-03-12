@@ -1,18 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 export default function WhyAIChangesTheEquation() {
-    return (
-        <section className="max-w-screen-sm mx-auto mb-5 mt-20">
-            <h2 className="text-2xl">Why AI Changes the Equation</h2>
-            <hr />
+  return (
+    <section className="mx-auto mb-5 mt-20 max-w-screen-lg px-4">
+      <div className="grid items-start gap-8 md:grid-cols-2">
+        <div>
+          <h2 className="text-2xl">Why AI Changes the Equation</h2>
+          <hr />
 
-            <p className="text-md mt-5">
-                The bottleneck has shifted from building things to <strong>deciding what’s worth building</strong> and ensuring it’s coherent, simple, and aligned with real needs. I think leverage belongs to those who can frame problems clearly, exercise judgment under uncertainty, and take responsibility for outcomes.
-            </p>
+          <p className="mt-5 text-md">
+            The bottleneck has shifted from building things to{" "}
+            <strong>deciding what is worth building</strong> and ensuring it is
+            coherent, simple, and aligned with real needs. I think leverage
+            belongs to those who can frame problems clearly, exercise judgment
+            under uncertainty, and take responsibility for outcomes.
+          </p>
+        </div>
 
-            {/* <p className="text-lg mt-5">
+        <div className="md:pl-2">
+          <Image
+            src="/scarcity_infographic.png"
+            alt="Scarcity infographic"
+            width={2166}
+            height={1048}
+            className="h-auto w-full rounded-md"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* <p className="text-lg mt-5">
                 For most of modern software history, value creation followed a predictable pattern, and it included the following roles:
             </p>
 
@@ -66,6 +86,6 @@ export default function WhyAIChangesTheEquation() {
                     <li>Why this approach is right.</li>
                 </ul>
             </div> */}
-        </section>
-    );
+    </section>
+  );
 }
