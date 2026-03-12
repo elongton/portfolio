@@ -1,7 +1,4 @@
-import { Infoblock } from "@/app/root-components/Infoblock";
 import { Hero } from "./root-components/hero";
-import { essay } from "@/static/essay";
-import { WordcloudSatellite } from "@/components/Wordcloud_satellite";
 import { Carousel } from "./root-components/carousel";
 import { Slide1 } from "./root-components/slides/slide1";
 import { Slide2 } from "./root-components/slides/slide2";
@@ -9,38 +6,15 @@ import { Slide3 } from "./root-components/slides/slide3";
 import { Slide4 } from "./root-components/slides/slide4";
 
 export default function Home() {
-  const designerDetails = [
-    "Finds the problems.",
-    "Shapes the interface.",
-    "Reduces cognitive load.",
-  ];
-  const engineerDetails = [
-    "Models the system.",
-    "Builds reliable software.",
-    "Handles contraints and scale.",
-  ];
-  const productManagerDetails = [
-    "Chooses what not to build.",
-    "Sets Priorities.",
-    "Aligns effort with outcomes.",
-  ];
   return (
-    <>
+    <main className="pb-16 sm:pb-20">
       <Hero />
-      {/* <section
-        id="infoblocks"
-        className="container mx-auto flex w-full grow gap-6 flex-col md:flex-row"
-      >
-        <Infoblock title="Designer" details={designerDetails} link="/designer" />
-        <Infoblock title="Engineer" details={engineerDetails} link="/engineer" />
-        <Infoblock title="Product Manager" details={productManagerDetails} link="/product-manager" />
-      </section> */}
-      {/* <div className="container mx-auto">
-        <hr />
-      </div> */}
-      <section className="container mx-auto py-10 mt-10">
 
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-xl shadow-lg">
+      <section className="mx-auto mt-8 w-full max-w-6xl px-4 py-8 sm:mt-10 sm:px-6">
+        <h2 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">
+          Quick Introduction
+        </h2>
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-xl border border-white/10 shadow-lg sm:rounded-2xl">
           <div className="aspect-video">
             <iframe
               src="https://www.youtube.com/embed/NrpMjm4x9Vc"
@@ -52,32 +26,35 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* <div className="container mx-auto mb-10">
-        <hr />
-      </div> */}
-      {/* <section className="container mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 ">Core concepts in my orbit</h2>
-        <WordcloudSatellite text={essay} links={{ "that": "/contact" }} />
-      </section>
-      <div className="container mx-auto mb-10">
-        <hr />
-      </div> */}
-      <section className="container mx-auto mt-20">
-        <h2 className="text-2xl font-semibold mb-4 ">Featured Work</h2>
-        <Carousel slides={[<Slide1 key={1} />, <Slide2 key={2} />, <Slide3 key={3} />, <Slide4 key={4} />]} />
-      </section>
-      {/* <div className="container mx-auto mb-10 mt-10">
-        <hr />
-      </div> */}
-      <section className="container mx-auto mb-20 mt-30">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Want to talk about building AI-native tools that <u>actually</u> hold up in the real world?</h2>
 
-        <div className={'flex justify-center gap-10'}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Share my resume</button>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded">Start a conversation</button>
+      <section className="mx-auto mt-10 w-full max-w-6xl px-4 sm:mt-16 sm:px-6">
+        <h2 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">
+          Featured Work
+        </h2>
+        <Carousel
+          slides={[
+            <Slide1 key={1} />,
+            <Slide2 key={2} />,
+            <Slide3 key={3} />,
+            <Slide4 key={4} />,
+          ]}
+        />
+      </section>
+
+      <section className="mx-auto mt-14 w-full max-w-6xl px-4 pb-6 sm:mt-20 sm:px-6">
+        <h2 className="mx-auto mb-6 max-w-3xl text-center text-xl font-semibold leading-relaxed sm:mb-8 sm:text-2xl">
+          Want to talk about building AI-native tools that <u>actually</u> hold
+          up in the real world?
+        </h2>
+        <div className="mx-auto flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <button className="w-full rounded bg-blue-500 px-4 py-2.5 text-white transition hover:bg-blue-700 sm:w-auto">
+            Share my resume
+          </button>
+          <button className="w-full rounded bg-blue-500 px-4 py-2.5 text-white transition hover:bg-blue-700 sm:w-auto">
+            Start a conversation
+          </button>
         </div>
-
       </section>
-    </>
+    </main>
   );
 }

@@ -10,7 +10,7 @@ const HERO_BLUR_DATA_URL =
  */
 export const Hero = () => {
   return (
-    <section className="relative isolate w-full min-h-screen overflow-hidden bg-slate-900 text-white">
+    <section className="relative isolate w-full min-h-[100svh] overflow-hidden bg-slate-900 text-white">
       <Image
         src="/maxlongton_smile_hero.jpg"
         alt="Background image"
@@ -30,20 +30,20 @@ export const Hero = () => {
 
       <div
         id="my-title"
-        className="relative z-10 container mx-auto flex h-full items-center justify-end px-6 pb-20 pt-24 sm:pt-28"
+        className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-screen-xl items-end justify-center px-4 pb-28 pt-24 sm:items-center sm:justify-end sm:px-6 sm:pb-20 sm:pt-28 lg:px-8"
       >
-        <div className="max-w-xl space-y-4 text-right">
-          <h1 className="text-5xl font-semibold leading-tight sm:text-5xl">
+        <div className="max-w-xl space-y-3 text-center sm:space-y-4 sm:text-right">
+          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
             Max Longton
           </h1>
-          <p className="text-xl text-slate-100/80">
+          <p className="text-base text-slate-100/80 sm:text-xl">
             Designer. Engineer. Product Manager.
           </p>
         </div>
       </div>
 
       {/* Optional overlay for contrast */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/30 to-slate-900/70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/35 to-slate-900/80" />
 
       {/* Sculpted curve divider */}
       <svg
@@ -82,11 +82,12 @@ export const Hero = () => {
 
       {/* Torso overlay copy */}
       <div
-        className="absolute top-[70%] z-20 -translate-x-1/6 -translate-y-1/2 sm:top-[52%] sm:left-[48%] md:top-[80%] md:left-[42%] lg:left-[20%] xl:left-[20%]"
+        className="absolute bottom-14 left-4 right-4 z-20 sm:bottom-20 sm:left-auto sm:right-6 sm:max-w-md md:bottom-20 md:right-10 lg:bottom-16 lg:left-[20%] lg:right-auto lg:max-w-lg"
         aria-label="Statement overlay"
       >
-        <p className="max-w-md px-4 py-3 text-xl leading-relaxed text-white">
-          "I build AI-native systems that turn messy work into reliable software."</p>
+        <p className="max-w-md px-0 py-0 text-base leading-relaxed text-white sm:px-4 sm:py-3 sm:text-xl">
+          I build AI-native systems that turn messy work into reliable software.
+        </p>
       </div>
     </section>
   );

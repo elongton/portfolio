@@ -1,15 +1,18 @@
 import { Menu } from "@/components/Menu";
 import Image from "next/image";
+import contactBackground from "@/public/maxlongton_contactme.jpg";
 
 export default function Page() {
   return (
     <section className="relative isolate w-full min-h-screen overflow-hidden bg-slate-900 text-white">
       <Image
-        src="/maxlongton_contactme.jpg"
+        src={contactBackground}
         alt="Contact background image"
         fill
         priority
-        quality={100}
+        quality={82}
+        placeholder="blur"
+        blurDataURL={contactBackground.blurDataURL}
         sizes="100vw"
         className="pointer-events-none object-cover object-[60%_15%] scale-[1.02]"
       />

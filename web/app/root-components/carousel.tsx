@@ -48,10 +48,7 @@ export const Carousel = ({
   const [isHovered, setIsHovered] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const autoplayRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    setActiveIndex((current) => clampIndex(current, count));
-  }, [count]);
+  const safeActiveIndex = clampIndex(activeIndex, count);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
@@ -79,13 +76,13 @@ export const Carousel = ({
 
   const goNext = useCallback(() => {
     if (!count) return;
-    goTo(activeIndex + 1);
-  }, [activeIndex, count, goTo]);
+    goTo(safeActiveIndex + 1);
+  }, [count, goTo, safeActiveIndex]);
 
   const goPrev = useCallback(() => {
     if (!count) return;
-    goTo(activeIndex - 1);
-  }, [activeIndex, count, goTo]);
+    goTo(safeActiveIndex - 1);
+  }, [count, goTo, safeActiveIndex]);
 
   useEffect(() => {
     if (!autoPlay || !count) return;
@@ -116,8 +113,8 @@ export const Carousel = ({
   ]);
 
   const translateX = useMemo(
-    () => `-${activeIndex * 100}%`,
-    [activeIndex]
+    () => `-${safeActiveIndex * 100}%`,
+    [safeActiveIndex]
   );
 
   if (count === 0) return null;
@@ -140,7 +137,7 @@ export const Carousel = ({
             <div
               key={`slide-${index}`}
               className="w-full shrink-0 grow-0 basis-full"
-              aria-hidden={index !== activeIndex}
+              aria-hidden={index !== safeActiveIndex}
             >
               {slide}
             </div>
@@ -154,9 +151,9 @@ export const Carousel = ({
             <div
               key={`slide-${index}`}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                index === activeIndex ? "opacity-100" : "opacity-0"
+                index === safeActiveIndex ? "opacity-100" : "opacity-0"
               }`}
-              aria-hidden={index !== activeIndex}
+              aria-hidden={index !== safeActiveIndex}
             >
               {slide}
             </div>
@@ -165,40 +162,40 @@ export const Carousel = ({
       )}
 
       {showArrows && count > 1 && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-3">
+        <div className="pointer-events-none absolute inset-x-0 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-between px-2 sm:flex sm:px-3">
           <button
             type="button"
-            className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white"
+            className="pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white"
             onClick={goPrev}
             aria-label="Previous slide"
           >
-            <span aria-hidden="true">‹</span>
+            <span aria-hidden="true">&lsaquo;</span>
           </button>
           <button
             type="button"
-            className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white"
+            className="pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white"
             onClick={goNext}
             aria-label="Next slide"
           >
-            <span aria-hidden="true">›</span>
+            <span aria-hidden="true">&rsaquo;</span>
           </button>
         </div>
       )}
 
       {showDots && count > 1 && (
-        <div className="absolute inset-x-0 bottom-3 flex items-center justify-center gap-2">
+        <div className="absolute inset-x-0 bottom-2 z-10 flex items-center justify-center gap-2 sm:bottom-3">
           {slides.map((_, index) => (
             <button
               key={`dot-${index}`}
               type="button"
-              className={`h-2.5 w-2.5 rounded-full transition ${
-                index === activeIndex
+              className={`h-2.5 w-2.5 rounded-full transition sm:h-2 sm:w-2 ${
+                index === safeActiveIndex
                   ? "bg-white"
                   : "bg-white/50 hover:bg-white/80"
               }`}
               onClick={() => goTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              aria-current={index === activeIndex}
+              aria-current={index === safeActiveIndex}
             />
           ))}
         </div>
