@@ -7,6 +7,12 @@ import Image from "next/image";
  */
 export const Banner = () => {
   const year = new Date().getFullYear();
+  const curvePrimary =
+    "M0,78 C360,4 1080,152 1440,78";
+  const curveSecondary =
+    "M0,64 C360,-10 1080,138 1440,64";
+  const curveTertiary =
+    "M0,92 C360,18 1080,166 1440,92";
 
   return (
     <section className="relative isolate -mt-5 w-full min-h-[70vh] overflow-hidden text-white">
@@ -37,21 +43,21 @@ export const Banner = () => {
           </linearGradient>
         </defs>
         <path
-          d="M0,0 L1440,0 L1440,68 C1260,72 1110,84 920,82 C730,80 590,62 400,64 C250,66 130,72 0,70 Z"
+          d={`${curvePrimary} L1440,0 L0,0 Z`}
           fill="url(#hero-cutaway-top)"
         />
         <path
-          d="M0,70 C140,76 260,65 390,62 C570,54 720,82 920,85 C1120,88 1270,73 1440,68"
+          d={curvePrimary}
           className="fill-none stroke-slate-100/22"
           strokeWidth="3.5"
         />
         <path
-          d="M0,56 C150,63 280,52 400,49 C570,41 720,70 920,73 C1120,76 1270,62 1440,58"
+          d={curveSecondary}
           className="fill-none stroke-slate-200/15"
           strokeWidth="2.5"
         />
         <path
-          d="M0,85 C140,91 280,80 410,77 C570,71 730,94 930,95 C1130,96 1270,83 1440,80"
+          d={curveTertiary}
           className="fill-none stroke-slate-200/10"
           strokeWidth="2"
         />
@@ -71,22 +77,22 @@ export const Banner = () => {
           </linearGradient>
         </defs>
         <path
-          d="M0,70 C130,72 250,66 400,64 C590,62 730,80 920,82 C1110,84 1260,72 1440,68 L1440,120 L0,120 Z"
+          d={`${curvePrimary} L1440,120 L0,120 Z`}
           fill="url(#hero-cutaway-bottom)"
         />
         {/* Theme-consistent accent lines */}
         <path
-          d="M0,70 C140,76 260,65 390,62 C570,54 720,82 920,85 C1120,88 1270,73 1440,68"
+          d={curvePrimary}
           className="fill-none stroke-slate-100/22"
           strokeWidth="3.5"
         />
         <path
-          d="M0,56 C150,63 280,52 400,49 C570,41 720,70 920,73 C1120,76 1270,62 1440,58"
+          d={curveSecondary}
           className="fill-none stroke-slate-200/15"
           strokeWidth="2.5"
         />
         <path
-          d="M0,85 C140,91 280,80 410,77 C570,71 730,94 930,95 C1130,96 1270,83 1440,80"
+          d={curveTertiary}
           className="fill-none stroke-slate-200/10"
           strokeWidth="2"
         />

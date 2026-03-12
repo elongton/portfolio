@@ -5,7 +5,7 @@ import React from "react";
 
 export default function WhyAIChangesTheEquation() {
   return (
-    <section className="mx-auto mb-5 mt-20 max-w-screen-lg px-4">
+    <section className="mx-auto mb-5 mt-20 max-w-screen-lg px-4 mb-20">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <div>
           <h2 className="text-2xl">Why AI Changes the Equation</h2>
