@@ -9,12 +9,13 @@ export const Hero = () => {
   return (
     <section className="relative isolate w-full min-h-[70vh] overflow-hidden bg-slate-900 text-white">
       <Image
-        src="/hero_1.png"
+        src="/maxlongton_smile.jpg"
         alt="Background image"
         fill
         priority
+        quality={100}
         sizes="100vw"
-        className="pointer-events-none object-cover object-[50%_40%] sm:object-[50%_35%] md:object-[50%_30%] lg:object-center scale-[1.05] sm:scale-[1.08] md:scale-[1.12]"
+        className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-[60%_32%] scale-150 sm:scale-[1.01] md:scale-[1.03]"
       />
 
       {/* Sticky nav over hero */}

@@ -9,10 +9,11 @@ export const Banner = () => {
   return (
     <section className="relative isolate w-full min-h-[70vh] overflow-hidden text-white">
       <Image
-        src="/instructing.webp"
+        src="/maxlongton_working.jpg"
         alt="Background image"
         fill
         priority
+        quality={100}
         sizes="100vw"
         className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-center scale-[1.02] sm:scale-[1.05] md:scale-[1.08]"
       />
