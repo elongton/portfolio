@@ -1,21 +1,26 @@
 import { Menu } from "@/components/Menu";
 import Image from "next/image";
 
+const HERO_BLUR_DATA_URL =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDABgQEhUSDxgVExUaGRgcIzsmIyAgI0gzNis7VUtaWFRLUlFeaodzXmSAZVFSdqB3gIyQl5mXW3GmsqWTsIeUl5L/2wBDARkaGiMfI0UmJkWSYVJhkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpL/wAARCAAkABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwChdQxK8RRicZPStLQriKJpxLIiblAG4gZ61kyzNJgyNnA9KdfyRholjRRhBnA6+5qWUjY1Rol0qSNJIny4PyY9v8KK50nvtx+FFJIdxJWpbl8rAG4ymM/iaeiRvcRozbY2OHPTFVpdiSMpYyBSQDWilpYzsCTyRM2ME4I5GfaioVOW55HeipKAyu/DHj6U3uaKKYhKKKKAP//Z";
+
 /**
  * Full-width hero with responsive background positioning/zoom.
  * Tweak scale/object-position per breakpoint via Tailwind classes below.
  */
 export const Hero = () => {
   return (
-    <section className="relative isolate w-full min-h-[70vh] overflow-hidden bg-slate-900 text-white">
+    <section className="relative isolate w-full min-h-screen overflow-hidden bg-slate-900 text-white">
       <Image
-        src="/maxlongton_smile.jpg"
+        src="/maxlongton_smile_hero.jpg"
         alt="Background image"
         fill
         priority
-        quality={100}
+        quality={82}
+        placeholder="blur"
+        blurDataURL={HERO_BLUR_DATA_URL}
         sizes="100vw"
-        className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-[60%_32%] scale-150 sm:scale-[1.01] md:scale-[1.03]"
+        className="pointer-events-none object-cover object-[50%_38%] sm:object-[50%_34%] md:object-[50%_30%] lg:object-[60%_32%] scale-100 sm:scale-[1.01] md:scale-[1.03]"
       />
 
       {/* Sticky nav over hero */}
@@ -81,7 +86,9 @@ export const Hero = () => {
         aria-label="Statement overlay"
       >
         <p className="max-w-md px-4 py-3 text-xl leading-relaxed text-white">
-          "I build AI-native systems that turn messy work into reliable software."</p>
+          &quot;I build AI-native systems that turn messy work into reliable
+          software.&quot;
+        </p>
       </div>
     </section>
   );

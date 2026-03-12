@@ -7,7 +7,7 @@ import Image from "next/image";
  */
 export const Banner = () => {
   return (
-    <section className="relative isolate w-full min-h-[70vh] overflow-hidden text-white">
+    <section className="relative isolate w-full min-h-[70vh] overflow-hidden text-white mt-20">
       <Image
         src="/maxlongton_working.jpg"
         alt="Background image"
